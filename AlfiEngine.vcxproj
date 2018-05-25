@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{FC96306F-91CF-429A-B99D-21A3BDA36F30}</ProjectGuid>
-    <RootNamespace>My2DEngine</RootNamespace>
+    <RootNamespace>MyAlfiEngine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

@@ -52,6 +52,7 @@ void Engine::Run()
 		if (SDL_PollEvent(&e) != 0)
 		{
 			// Check if the user pressed the quit button
+			// The program will not quit if we do not tell it to quit
 			if (e.type == SDL_QUIT)
 			{
 				break;

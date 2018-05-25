@@ -1,3 +1,3 @@
-# 2D Engine
+# Alfi Engine
 
-The beginning of something great! For now, just using SDL for input and rendering
+It will become a simple 3D engine in a near future, for now just a simple 2D engine using SDL.

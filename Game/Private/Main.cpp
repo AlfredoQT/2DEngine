@@ -1,11 +1,19 @@
 #include "SDL.h"
+#include "Engine\Public\Engine.h"
 
 int main(int argc, char* args[])
 {
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+	Engine engine;
+
+	if (engine.Init("2DEngine", 800, 600) != 0)
+	{
+		// SDL failed to initialize
 		return 1;
 	}
-	SDL_Quit();
+	
+	engine.Run();
+
+	engine.Quit();
 
 	return 0;
 }

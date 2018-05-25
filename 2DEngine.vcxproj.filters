@@ -22,10 +22,24 @@
     <Filter Include="Source Files\Game\Private">
       <UniqueIdentifier>{e64ec762-bf90-477b-ab88-dd119dccca98}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Private">
+      <UniqueIdentifier>{c71d8d1c-64ab-4854-b563-90e9de212956}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Public">
+      <UniqueIdentifier>{497afe60-eaf7-4aeb-8429-087ec1ee29ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Private\Main.cpp">
       <Filter>Source Files\Game\Private</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Private\Engine.cpp">
+      <Filter>Source Files\Engine\Private</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine\Public\Engine.h">
+      <Filter>Source Files\Engine\Public</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

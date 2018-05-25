@@ -57,6 +57,7 @@ void Engine::Run()
 				break;
 			}
 		}
+		// TODO: Calculate the time between each frame
 	}
 }
 

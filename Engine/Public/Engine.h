@@ -20,7 +20,7 @@ private:
 	SDL_Window* mWindow;
 	SDL_Renderer* mRenderer;
 
-	float mWindowWidth;
-	float mWindowHeight;
+	int mWindowWidth;
+	int mWindowHeight;
 
 };

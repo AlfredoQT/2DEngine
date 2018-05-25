@@ -328,4 +328,7 @@ __pycache__/
 
 ### Custom ###
 
-Out/
+OutGame/
+.idb
+.tlog
+.lastbuildstate

@@ -83,11 +83,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)/3rdParty/SDL/SDL2-2.0.8/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)3rdParty/SDL/SDL2_gfx-1.0.1;$(ProjectDir);$(ProjectDir)/3rdParty/SDL/SDL2-2.0.8/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(ProjectDir)/3rdParty/SDL/SDL2-2.0.8/lib/x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)3rdParty/SDL/SDL2_gfx-1.0.1/lib;$(ProjectDir)3rdParty/SDL/SDL2-2.0.8/lib/x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2-gfx.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -134,11 +134,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Private\Core\Time.cpp" />
     <ClCompile Include="Engine\Private\Engine.cpp" />
+    <ClCompile Include="Engine\Private\Utils\Debug.cpp" />
     <ClCompile Include="Game\Private\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Public\Core\Containers\HashMap.h" />
+    <ClInclude Include="Engine\Public\Core\Containers\SymbolTable.h" />
+    <ClInclude Include="Engine\Public\Core\Time.h" />
+    <ClInclude Include="Engine\Public\Core\Types\Color.h" />
+    <ClInclude Include="Engine\Public\Core\Types\Vector2.h" />
     <ClInclude Include="Engine\Public\Engine.h" />
+    <ClInclude Include="Engine\Public\Utils\Debug.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

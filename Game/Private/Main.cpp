@@ -1,5 +1,7 @@
 #include "SDL.h"
 #include "Engine\Public\Engine.h"
+#include "Engine\Public\Core\Types\Color.h"
+#include "Engine\Public\Core\Types\Vector2.h"
 
 int main(int argc, char* args[])
 {

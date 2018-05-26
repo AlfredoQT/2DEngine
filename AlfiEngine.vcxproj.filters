@@ -28,6 +28,24 @@
     <Filter Include="Source Files\Engine\Public">
       <UniqueIdentifier>{497afe60-eaf7-4aeb-8429-087ec1ee29ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Public\Utils">
+      <UniqueIdentifier>{6be9f96a-bc0a-432a-8af6-0aa501f5c31f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Private\Utils">
+      <UniqueIdentifier>{3966f915-7f03-45db-b6d1-e6bb7115521c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Public\Core">
+      <UniqueIdentifier>{98fa8570-9fd3-4a71-bf12-8d6e01a9bed5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Private\Core">
+      <UniqueIdentifier>{513349d6-2146-46f6-bc3c-6f71d3a5061b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Public\Core\Containers">
+      <UniqueIdentifier>{882dd6d0-f2a2-463c-9129-455cedd53522}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Public\Core\Types">
+      <UniqueIdentifier>{efb91be8-f808-415f-bacd-4651f64ffc18}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Private\Main.cpp">
@@ -36,10 +54,34 @@
     <ClCompile Include="Engine\Private\Engine.cpp">
       <Filter>Source Files\Engine\Private</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Private\Utils\Debug.cpp">
+      <Filter>Source Files\Engine\Private\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Private\Core\Time.cpp">
+      <Filter>Source Files\Engine\Private\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Public\Engine.h">
       <Filter>Source Files\Engine\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Public\Utils\Debug.h">
+      <Filter>Source Files\Engine\Public\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Public\Core\Time.h">
+      <Filter>Source Files\Engine\Public\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Public\Core\Containers\SymbolTable.h">
+      <Filter>Source Files\Engine\Public\Core\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Public\Core\Containers\HashMap.h">
+      <Filter>Source Files\Engine\Public\Core\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Public\Core\Types\Color.h">
+      <Filter>Source Files\Engine\Public\Core\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Public\Core\Types\Vector2.h">
+      <Filter>Source Files\Engine\Public\Core\Types</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

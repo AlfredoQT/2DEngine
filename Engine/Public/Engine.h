@@ -19,7 +19,7 @@ public:
 
 	// TODO: Provide functionality for order in layer
 	void DrawLine(const Vector2& pOrigin, const Vector2& pTarget, const Color& pColor);
-	void DrawCircle(const Vector2& pPosition, const float& pRadius, const Color& pColor);
+	void DrawFillCircle(const Vector2& pPosition, const float& pRadius, const Color& pColor);
 
 private:
 

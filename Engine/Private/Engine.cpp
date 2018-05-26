@@ -4,6 +4,7 @@
 #include "Engine\Public\Core\Time.h"
 #include "Engine\Public\Core\Types\Color.h"
 #include "Engine\Public\Core\Types\Vector2.h"
+#include "sdl2_gfxprimitives.h"
 
 int Engine::Init(const char* pTitle, const int& pWidth, const int& pHeight)
 {
@@ -69,10 +70,6 @@ void Engine::Run()
 		// Determines the delta time, for now 
 		Time::Update();
 
-		DrawLine(Vector2(0.0f, 0.0f), Vector2(100.0f, 100.0f), Color(255, 0, 0));
-		DrawCircle(Vector2(200.0f, 200.0f), 5.0f, Color(255, 0, 0));
-		DrawCircle(Vector2(200.0f, 150.0f), 5.0f, Color(255, 0, 0));
-
 		SDL_RenderPresent(mRenderer);
 	}
 }
@@ -94,8 +91,13 @@ void Engine::DrawLine(const Vector2 & pOrigin, const Vector2 & pTarget, const Co
 	SDL_RenderDrawLine(mRenderer, static_cast<int>(pOrigin.x), static_cast<int>(pOrigin.y), static_cast<int>(pTarget.x), static_cast<int>(pTarget.y));
 }
 
-void Engine::DrawCircle(const Vector2 & pPosition, const float & pRadius, const Color & pColor)
+void Engine::DrawFillCircle(const Vector2 & pPosition, const float & pRadius, const Color & pColor)
 {
 	SDL_SetRenderDrawColor(mRenderer, pColor.R, pColor.G, pColor.B, pColor.A);
-	SDL_RenderDrawPoint(mRenderer, static_cast<int>(pPosition.x), static_cast<int>(pPosition.y));
+	
+	// TODO: Replace this with mid point algorithm
+
+	// I don't want to use tha anti aliased version because of performance
+	filledCircleRGBA(mRenderer, static_cast<uint16_t>(pPosition.x), static_cast<uint16_t>(pPosition.y), static_cast<uint16_t>(pRadius), pColor.R, pColor.G, pColor.B, pColor.A);
+
 }

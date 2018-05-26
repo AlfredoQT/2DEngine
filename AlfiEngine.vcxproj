@@ -140,7 +140,11 @@
     <ClCompile Include="Game\Private\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Public\Core\Containers\HashMap.h" />
+    <ClInclude Include="Engine\Public\Core\Containers\SymbolTable.h" />
     <ClInclude Include="Engine\Public\Core\Time.h" />
+    <ClInclude Include="Engine\Public\Core\Types\Color.h" />
+    <ClInclude Include="Engine\Public\Core\Types\Vector2.h" />
     <ClInclude Include="Engine\Public\Engine.h" />
     <ClInclude Include="Engine\Public\Utils\Debug.h" />
   </ItemGroup>

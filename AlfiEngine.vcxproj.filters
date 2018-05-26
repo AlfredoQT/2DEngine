@@ -40,6 +40,12 @@
     <Filter Include="Source Files\Engine\Private\Core">
       <UniqueIdentifier>{513349d6-2146-46f6-bc3c-6f71d3a5061b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Public\Core\Containers">
+      <UniqueIdentifier>{882dd6d0-f2a2-463c-9129-455cedd53522}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Public\Core\Types">
+      <UniqueIdentifier>{efb91be8-f808-415f-bacd-4651f64ffc18}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Private\Main.cpp">
@@ -64,6 +70,18 @@
     </ClInclude>
     <ClInclude Include="Engine\Public\Core\Time.h">
       <Filter>Source Files\Engine\Public\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Public\Core\Containers\SymbolTable.h">
+      <Filter>Source Files\Engine\Public\Core\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Public\Core\Containers\HashMap.h">
+      <Filter>Source Files\Engine\Public\Core\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Public\Core\Types\Color.h">
+      <Filter>Source Files\Engine\Public\Core\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Public\Core\Types\Vector2.h">
+      <Filter>Source Files\Engine\Public\Core\Types</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

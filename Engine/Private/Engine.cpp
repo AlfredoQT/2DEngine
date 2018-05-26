@@ -1,5 +1,7 @@
 #include "..\Public\Engine.h"
 #include "SDL.h"
+#include "Engine\Public\Utils\Debug.h"
+#include "Engine\Public\Core\Time.h"
 
 int Engine::Init(const char* pTitle, const int& pWidth, const int& pHeight)
 {
@@ -58,7 +60,9 @@ void Engine::Run()
 				break;
 			}
 		}
-		// TODO: Calculate the time between each frame
+
+		// Determines the delta time, for now 
+		Time::Update();
 	}
 }
 

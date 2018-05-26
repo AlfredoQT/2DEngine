@@ -134,11 +134,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Private\Core\Time.cpp" />
     <ClCompile Include="Engine\Private\Engine.cpp" />
+    <ClCompile Include="Engine\Private\Utils\Debug.cpp" />
     <ClCompile Include="Game\Private\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Public\Core\Time.h" />
     <ClInclude Include="Engine\Public\Engine.h" />
+    <ClInclude Include="Engine\Public\Utils\Debug.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

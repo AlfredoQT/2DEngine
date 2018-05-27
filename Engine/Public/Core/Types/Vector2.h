@@ -1,6 +1,6 @@
-// Represents a two dimensional vector and operations on it
-
 #pragma once
+
+// Represents a two dimensional vector and operations on it
 
 #include <cmath>
 

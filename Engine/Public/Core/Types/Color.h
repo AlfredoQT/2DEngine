@@ -1,3 +1,5 @@
+#pragma once
+
 // Represents a colo
 
 #include <cstdint>

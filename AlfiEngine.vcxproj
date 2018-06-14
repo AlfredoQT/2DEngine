@@ -83,11 +83,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)3rdParty/SDL/SDL2_ttf-2.0.14/include;$(ProjectDir)3rdParty/SDL/SDL2_gfx-1.0.1;$(ProjectDir);$(ProjectDir)/3rdParty/SDL/SDL2-2.0.8/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)3rdParty/glew-2.1.0/include;$(ProjectDir)3rdParty/SDL/SDL2_ttf-2.0.14/include;$(ProjectDir)3rdParty/SDL/SDL2_gfx-1.0.1;$(ProjectDir);$(ProjectDir)/3rdParty/SDL/SDL2-2.0.8/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(ProjectDir)3rdParty/SDL/SDL2_ttf-2.0.14/lib/x86;$(ProjectDir)3rdParty/SDL/SDL2_gfx-1.0.1/lib;$(ProjectDir)3rdParty/SDL/SDL2-2.0.8/lib/x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2-gfx.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)3rdParty/SDL/SDL2_ttf-2.0.14/lib/x86;$(ProjectDir)3rdParty/SDL/SDL2_gfx-1.0.1/lib;$(ProjectDir)3rdParty/SDL/SDL2-2.0.8/lib/x86;$(ProjectDir)3rdParty/glew-2.1.0/lib/Release/Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2-gfx.lib;SDL2_ttf.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -137,6 +137,7 @@
     <ClCompile Include="Engine\Private\Core\Time.cpp" />
     <ClCompile Include="Engine\Private\Engine.cpp" />
     <ClCompile Include="Engine\Private\Engine2D.cpp" />
+    <ClCompile Include="Engine\Private\EngineGL.cpp" />
     <ClCompile Include="Engine\Private\Utils\Debug.cpp" />
     <ClCompile Include="Game\Private\COG\COGBullet.cpp" />
     <ClCompile Include="Game\Private\COG\COGCircleShape.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="Engine\Public\Core\Types\Vector2.h" />
     <ClInclude Include="Engine\Public\Engine.h" />
     <ClInclude Include="Engine\Public\Engine2D.h" />
+    <ClInclude Include="Engine\Public\EngineGL.h" />
     <ClInclude Include="Engine\Public\Utils\Debug.h" />
     <ClInclude Include="Game\Public\COG\COGBullet.h" />
     <ClInclude Include="Game\Public\COG\COGCircleShape.h" />

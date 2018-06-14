@@ -24,3 +24,15 @@ void Debug::OutputLine(float input)
 	std::string str = std::to_string(input);
 	OutputLine(str.c_str());
 }
+
+void Debug::OutputLine(int input)
+{
+	std::string str = std::to_string(input);
+	OutputLine(str.c_str());
+}
+
+void Debug::OutputLine(bool input)
+{
+	std::string str = std::to_string(input);
+	OutputLine(str.c_str());
+}

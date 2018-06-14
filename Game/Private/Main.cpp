@@ -2,20 +2,25 @@
 #include "Engine\Public\Engine.h"
 #include "Engine\Public\Core\Types\Color.h"
 #include "Engine\Public\Core\Types\Vector2.h"
+#include "Game\Public\TurretGame.h"
 
 int main(int argc, char* args[])
 {
-	Engine engine;
+	Engine* engine = new Engine();
 
-	if (engine.Init("2DEngine", 800, 600) != 0)
+	TurretGame game;
+
+	if (engine->Init(&game, "AlfiEngine", 800, 600) != 0)
 	{
 		// SDL failed to initialize
 		return 1;
 	}
 	
-	engine.Run();
+	engine->Run(&game);
 
-	engine.Quit();
+	engine->Quit(&game);
+
+	delete engine;
 
 	return 0;
 }

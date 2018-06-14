@@ -12,4 +12,8 @@ namespace Debug
 	void OutputLine(uint64_t input);
 
 	void OutputLine(float input);
+
+	void OutputLine(int input);
+
+	void OutputLine(bool input);
 }

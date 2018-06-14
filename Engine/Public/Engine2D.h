@@ -30,12 +30,4 @@ public:
 	// Drawn on top left
 	virtual void DrawText(std::string pFontFile, const int& pFontSize, const std::string pMessage, const Vector2& pPosition, const Color& pColor) override;
 
-protected:
-
-	SDL_Window * mWindow;
-	SDL_Renderer* mRenderer;
-
-	int mWindowWidth;
-	int mWindowHeight;
-
 };

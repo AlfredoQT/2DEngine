@@ -136,6 +136,7 @@
   <ItemGroup>
     <ClCompile Include="Engine\Private\Core\Time.cpp" />
     <ClCompile Include="Engine\Private\Engine.cpp" />
+    <ClCompile Include="Engine\Private\Engine2D.cpp" />
     <ClCompile Include="Engine\Private\Utils\Debug.cpp" />
     <ClCompile Include="Game\Private\COG\COGBullet.cpp" />
     <ClCompile Include="Game\Private\COG\COGCircleShape.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="Engine\Public\Core\Types\Color.h" />
     <ClInclude Include="Engine\Public\Core\Types\Vector2.h" />
     <ClInclude Include="Engine\Public\Engine.h" />
+    <ClInclude Include="Engine\Public\Engine2D.h" />
     <ClInclude Include="Engine\Public\Utils\Debug.h" />
     <ClInclude Include="Game\Public\COG\COGBullet.h" />
     <ClInclude Include="Game\Public\COG\COGCircleShape.h" />

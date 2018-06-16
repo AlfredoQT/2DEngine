@@ -61,6 +61,9 @@ int EngineGL::Init(IGame * pGame, const char * pTitle, const int & pWidth, const
 		return 1;
 	}
 
+	// do depth comparisons and update the depth buffer
+	glEnable(GL_DEPTH_TEST);
+
 	return 0;
 }
 

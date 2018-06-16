@@ -1,12 +1,12 @@
 #include "SDL.h"
-#include "Engine\Public\Engine2D.h"
+#include "Engine\Public\EngineGL.h"
 #include "Engine\Public\Core\Types\Color.h"
 #include "Engine\Public\Core\Types\Vector2.h"
 #include "Game\Public\TurretGame.h"
 
 int main(int argc, char* args[])
 {
-	Engine* engine = new Engine2D();
+	Engine* engine = new EngineGL();
 
 	TurretGame game;
 

@@ -3,7 +3,7 @@
 #include "Engine\Public\Utils\Debug.h"
 #include "Engine\Public\Core\Types\Vector2.h"
 #include "..\..\Public\GameObjectFactory.h"
-#include "Game\Public\FMath.h"
+#include "Engine\Public\Core\FMath.h"
 
 std::string Shotgun::Type() const
 {

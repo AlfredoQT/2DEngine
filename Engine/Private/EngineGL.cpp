@@ -7,6 +7,7 @@
 #include "Engine\Public\Core\Types\Vector2.h"
 #include "Engine\Public\Core\Shaders.h"
 #include "Engine\Public\Utils\Matrix4.h"
+#include "Engine\Public\Core\FMath.h"
 #include "Game\Public\IGame.h"
 
 #define ATTRIB_POINT 0
@@ -94,8 +95,9 @@ int EngineGL::Init(IGame * pGame, const char * pTitle, const int & pWidth, const
 		"#version 330\n"
 		"layout(location = 0) in vec2 point;\n"
 		"uniform mat4 model, view, proj;\n"
+		"uniform vec2 size;\n"
 		"void main() {\n"
-		"    gl_Position = proj * view * model * vec4(point, 0.0, 1.0);\n"
+		"    gl_Position = proj * view * model * vec4(size * point, 0.0, 1.0);\n"
 		"}\n";
 	const GLchar *frag_shader =
 		"#version 330\n"
@@ -163,7 +165,7 @@ void EngineGL::Run(IGame * pGame)
 		// Determines the delta time, for now 
 		Time::Update();
 
-		DrawRect(Vector2(30.0f, 30.0f), Vector2(50.0f, 50.0f), Color(100, 255, 255));
+		DrawRect(Vector2(400.0f, 300.0f), Vector2(790.0f, 590.0f), Color(100, 255, 255));
 
 		glUseProgram(mGC.mProgram);
 		glUniform1f(mGC.mUniformAngle, mGC.mAngle);
@@ -207,16 +209,22 @@ void EngineGL::DrawRect(const Vector2 & pTopLeft, const Vector2 & pBotRight, con
 	Matrix4 model;
 	Matrix4 view;
 
+	// Dimensions
+	// I had an epiphany
+	float size[2] = { FMath::Abs(pBotRight.x - pTopLeft.x) / 2.0f, FMath::Abs(pBotRight.y - pTopLeft.y) / 2.0f };
+
 	// projection matrix
 	Matrix4::OrthographicProjectionMatrix(&orthographicProjection, 800.0f, 600.0f, -100.0f, 100.0f);
 
 	// view matrix (really just an identity matrix, maybe optimize this call?)
-	Matrix4::MakeTranslationMatrix(&view, Vector2(0.0f, 0.0f));
+	// This is the pivot
+	Matrix4::MakeTranslationMatrix(&view, Vector2(size[0], size[1]));
 
 	// positions of the uniforms
 	int view_mat_location;
 	int proj_mat_location;
 	int model_mat_location;
+	int size_vec_location;
 
 	glUseProgram(mGC.mProgram);
 
@@ -225,7 +233,7 @@ void EngineGL::DrawRect(const Vector2 & pTopLeft, const Vector2 & pBotRight, con
 	float color[3] = { colorF.R, colorF.G, colorF.B };
 	glUniform3fv(mGC.mUniformAngle, 1, &color[0]);
 
-	Matrix4::MakeTranslationMatrix(&model, Vector2(10.0f, 10.0f)); // position of the object
+	Matrix4::MakeTranslationMatrix(&model, pTopLeft); // position of the object
 	model.m43 = -1.0f; // this is the "layer", cast from int to float
 
 	view_mat_location = glGetUniformLocation(mGC.mProgram, "view");
@@ -234,7 +242,9 @@ void EngineGL::DrawRect(const Vector2 & pTopLeft, const Vector2 & pBotRight, con
 	glUniformMatrix4fv(proj_mat_location, 1, GL_FALSE, orthographicProjection.ToFloatPtr());
 	model_mat_location = glGetUniformLocation(mGC.mProgram, "model");
 	glUniformMatrix4fv(model_mat_location, 1, GL_FALSE, model.ToFloatPtr());
-
+	size_vec_location = glGetUniformLocation(mGC.mProgram, "size");
+	glUniform2fv(size_vec_location, 1, &size[0]);
+	
 	glBindVertexArray(mGC.mVAOPoint);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, countof(SQUARE) / 2);
 	glBindVertexArray(0);

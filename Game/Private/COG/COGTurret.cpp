@@ -8,7 +8,7 @@
 #include "..\..\Public\FSMSniperTurretState.h"
 #include "..\..\Public\COG\COGTransform.h"
 #include "..\..\Public\COG\COGLineShape.h"
-#include "..\..\Public\FMath.h"
+#include "Engine\Public\Core\FMath.h"
 #include "..\..\Public\Input.h"
 #include "Engine\Public\Utils\Debug.h"
 

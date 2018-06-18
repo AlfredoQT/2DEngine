@@ -176,6 +176,7 @@
   <ItemGroup>
     <ClInclude Include="Engine\Public\Core\Containers\HashMap.h" />
     <ClInclude Include="Engine\Public\Core\Containers\SymbolTable.h" />
+    <ClInclude Include="Engine\Public\Core\FMath.h" />
     <ClInclude Include="Engine\Public\Core\GraphicsContext.h" />
     <ClInclude Include="Engine\Public\Core\Shaders.h" />
     <ClInclude Include="Engine\Public\Core\Time.h" />
@@ -201,7 +202,6 @@
     <ClInclude Include="Game\Public\COG\Component.h" />
     <ClInclude Include="Game\Public\CollisionInfo.h" />
     <ClInclude Include="Game\Public\Crossfade.h" />
-    <ClInclude Include="Game\Public\FMath.h" />
     <ClInclude Include="Game\Public\FSMMachineGunTurretState.h" />
     <ClInclude Include="Game\Public\FSMShotgunTurretState.h" />
     <ClInclude Include="Game\Public\FSMSniperTurretState.h" />

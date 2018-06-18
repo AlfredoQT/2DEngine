@@ -79,9 +79,17 @@ int EngineGL::Init(IGame * pGame, const char * pTitle, const int & pWidth, const
 	}
 
 	// do depth comparisons and update the depth buffer
-	// glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 
 	// updates to the shaders so they they'll A) draw in the correct space B) we can control the colour
+	/*const GLchar *vert_shader =
+		"#version 330\n"
+		"layout(location = 0) in vec2 point;\n"
+		"uniform float angle;\n"
+		"void main() {\n"
+		"    gl_Position = vec4(0.75 * point, 0.0, 1.0);\n"
+		"}\n";*/
+
 	const GLchar *vert_shader =
 		"#version 330\n"
 		"layout(location = 0) in vec2 point;\n"
@@ -145,7 +153,7 @@ void EngineGL::Run(IGame * pGame)
 		}
 
 		// Color
-		Color clearColor = Color(0, 0, 0, 0);
+		Color clearColor = Color(0, 0, 0, 255);
 
 		ColorF clearColorF = clearColor.ToColorF();
 
@@ -156,6 +164,14 @@ void EngineGL::Run(IGame * pGame)
 		Time::Update();
 
 		DrawRect(Vector2(30.0f, 30.0f), Vector2(50.0f, 50.0f), Color(100, 255, 255));
+
+		glUseProgram(mGC.mProgram);
+		glUniform1f(mGC.mUniformAngle, mGC.mAngle);
+		glBindVertexArray(mGC.mVAOPoint);
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, countof(SQUARE) / 2);
+		glBindVertexArray(0);
+		glUseProgram(0);
+
 
 		// Double buffer
 		SDL_GL_SwapWindow(mWindow);
@@ -195,9 +211,7 @@ void EngineGL::DrawRect(const Vector2 & pTopLeft, const Vector2 & pBotRight, con
 	Matrix4::OrthographicProjectionMatrix(&orthographicProjection, 800.0f, 600.0f, -100.0f, 100.0f);
 
 	// view matrix (really just an identity matrix, maybe optimize this call?)
-	Vector2 vPosition;
-	vPosition = pTopLeft;
-	Matrix4::MakeTranslationMatrix(&view, vPosition);
+	Matrix4::MakeTranslationMatrix(&view, Vector2(0.0f, 0.0f));
 
 	// positions of the uniforms
 	int view_mat_location;
@@ -206,16 +220,13 @@ void EngineGL::DrawRect(const Vector2 & pTopLeft, const Vector2 & pBotRight, con
 
 	glUseProgram(mGC.mProgram);
 
-	ColorF color = pColor.ToColorF();
+	ColorF colorF = pColor.ToColorF();
 
-	float colorTest[3] = { color.R, color.G, color.B };
+	float color[3] = { colorF.R, colorF.G, colorF.B };
+	glUniform3fv(mGC.mUniformAngle, 1, &color[0]);
 
-	glUniform3fv(mGC.mUniformAngle, 1, &colorTest[0]);
-
-	Vector2 objPosition;
-	objPosition = pBotRight;
-	Matrix4::MakeTranslationMatrix(&model, objPosition); // position of the object
-	model.m43 = 1000.0f; // this is the "layer", cast from int to float
+	Matrix4::MakeTranslationMatrix(&model, Vector2(10.0f, 10.0f)); // position of the object
+	model.m43 = -1.0f; // this is the "layer", cast from int to float
 
 	view_mat_location = glGetUniformLocation(mGC.mProgram, "view");
 	glUniformMatrix4fv(view_mat_location, 1, GL_FALSE, view.ToFloatPtr());

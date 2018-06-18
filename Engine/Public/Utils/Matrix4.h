@@ -9,15 +9,15 @@ public:
 
 	Matrix4() = default;
 
-	// A pointer to the first element of the matrix
-	float* ToFloatPtr();
-
-	const float* ToFloatPtr() const;
-
 	// Make the translation matrix, its less memory this way
 	static void MakeTranslationMatrix(Matrix4* pMatrixOut, const Vector2& pTranslation);
 
 	static void OrthographicProjectionMatrix(Matrix4* pOut, float fWidth, float fHeight, float fNearPlane, float fFarPlane);
+
+	// A pointer to the first element of the matrix
+	float* ToFloatPtr();
+
+	const float* ToFloatPtr() const;
 
 public:
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine.h"
+#include "Engine\Public\Core\GraphicsContext.h"
 
 struct SDL_Window;
 struct SDL_Renderer;
@@ -38,4 +39,5 @@ private:
 	// The opengl context
 	SDL_GLContext mGLContext;
 
+	GraphicsContext mGC;
 };

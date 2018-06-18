@@ -134,6 +134,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Private\Core\GraphicsContext.cpp" />
     <ClCompile Include="Engine\Private\Core\Time.cpp" />
     <ClCompile Include="Engine\Private\Engine.cpp" />
     <ClCompile Include="Engine\Private\Engine2D.cpp" />
@@ -175,8 +176,11 @@
   <ItemGroup>
     <ClInclude Include="Engine\Public\Core\Containers\HashMap.h" />
     <ClInclude Include="Engine\Public\Core\Containers\SymbolTable.h" />
+    <ClInclude Include="Engine\Public\Core\GraphicsContext.h" />
+    <ClInclude Include="Engine\Public\Core\Shaders.h" />
     <ClInclude Include="Engine\Public\Core\Time.h" />
     <ClInclude Include="Engine\Public\Core\Types\Color.h" />
+    <ClInclude Include="Engine\Public\Core\Types\ColorF.h" />
     <ClInclude Include="Engine\Public\Core\Types\Vector2.h" />
     <ClInclude Include="Engine\Public\Engine.h" />
     <ClInclude Include="Engine\Public\Engine2D.h" />

@@ -3,6 +3,7 @@
 // Represents a colo
 
 #include <cstdint>
+#include "ColorF.h"
 
 struct Color
 {
@@ -35,6 +36,11 @@ struct Color
 		, B(pB)
 		, A(pA)
 	{
+	}
+
+	ColorF ToColorF() const
+	{
+		return ColorF(R / 255.0f, G / 255.0f, B / 255 / 0.0f, A / 255.0f);
 	}
 
 };

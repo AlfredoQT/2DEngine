@@ -167,14 +167,6 @@ void EngineGL::Run(IGame * pGame)
 
 		DrawRect(Vector2(400.0f, 300.0f), Vector2(790.0f, 590.0f), Color(100, 255, 255));
 
-		glUseProgram(mGC.mProgram);
-		glUniform1f(mGC.mUniformAngle, mGC.mAngle);
-		glBindVertexArray(mGC.mVAOPoint);
-		glDrawArrays(GL_TRIANGLE_STRIP, 0, countof(SQUARE) / 2);
-		glBindVertexArray(0);
-		glUseProgram(0);
-
-
 		// Double buffer
 		SDL_GL_SwapWindow(mWindow);
 	}

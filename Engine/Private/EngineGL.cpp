@@ -10,14 +10,15 @@
 #include "Engine\Public\Core\FMath.h"
 #include "Game\Public\IGame.h"
 
-#define ATTRIB_POINT 0
+#define ATTRIB_POINT 0 // This refers to the location of point in vertex shader
+#define ATTRIB_TEX   1 // This refers to the location of tex in vertex shader
 #define countof(x) (sizeof(x) / sizeof(0[x]))
 
 const float SQUARE[] = {
-	-1.0f,  1.0f,
-	-1.0f, -1.0f,
-	1.0f,  1.0f,
-	1.0f, -1.0f
+	-1.0f,  1.0f, -1.0f, 1.0f,
+	-1.0f, -1.0f, -1.0f, -1.0f,
+	1.0f,  1.0f, 1.0f, 1.0f,
+	1.0f, -1.0f, 1.0f, -1.0f
 };
 
 int EngineGL::Init(IGame * pGame, const char * pTitle, const int & pWidth, const int & pHeight)
@@ -93,17 +94,27 @@ int EngineGL::Init(IGame * pGame, const char * pTitle, const int & pWidth, const
 
 	const GLchar *vert_shader =
 		"#version 330\n"
+		"//This two will be mapped in the setup\n"
 		"layout(location = 0) in vec2 point;\n"
+		"layout(location = 1) in vec2 tex;\n"
 		"uniform mat4 model, view, proj;\n"
 		"uniform vec2 size;\n"
+		"out vec2 CircleTexCoords;\n"
 		"void main() {\n"
 		"    gl_Position = proj * view * model * vec4(size * point, 0.0, 1.0);\n"
+		"    CircleTexCoords = tex;//tex will be set in setup\n"
 		"}\n";
 	const GLchar *frag_shader =
 		"#version 330\n"
 		"layout(location = 0) out vec4 color;\n"
 		"uniform vec3 in_color;\n"
+		"in vec2 CircleTexCoords;//Will be set by the vertex shader\n"
 		"void main() {\n"
+		"    float d = distance(CircleTexCoords, vec2(0.0, 0.0));// So it has to do with the unit circle, so corners of a box will not be drawn\n"
+		"    if (d > 1.0)// Not within the unit circle\n"
+		"    {\n"
+		"        discard; // Ignore this pixel\n"
+		"    }\n"
 		"    color = vec4(in_color, 0);\n"
 		"}\n";
 
@@ -127,8 +138,10 @@ int EngineGL::Init(IGame * pGame, const char * pTitle, const int & pWidth, const
 	glGenVertexArrays(1, &mGC.mVAOPoint);
 	glBindVertexArray(mGC.mVAOPoint);
 	glBindBuffer(GL_ARRAY_BUFFER, mGC.mVAOPoint);
-	glVertexAttribPointer(ATTRIB_POINT, 2, GL_FLOAT, GL_FALSE, 0, 0);
+	glVertexAttribPointer(ATTRIB_POINT, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float))); // Chunks of 4, read only 2 in every chunk by an offset of two. This is for the location
 	glEnableVertexAttribArray(ATTRIB_POINT);
+	glVertexAttribPointer(ATTRIB_TEX, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0); // Setup the texture att
+	glEnableVertexAttribArray(ATTRIB_TEX); // Enable it here
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }

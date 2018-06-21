@@ -39,5 +39,9 @@ private:
 	// The opengl context
 	SDL_GLContext mGLContext;
 
-	GraphicsContext mGC;
+	// For the box
+	GraphicsContext mGCBox;
+
+	// For the circle
+	GraphicsContext mGCCircle;
 };

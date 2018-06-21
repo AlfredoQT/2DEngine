@@ -6,8 +6,6 @@ typedef int GLint;
 struct GraphicsContext
 {
 	GLuint mProgram;
-	GLint mUniformAngle;
 	GLuint mVBOPoint;
 	GLuint mVAOPoint;
-	float mAngle;
 };

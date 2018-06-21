@@ -83,4 +83,10 @@ struct Vector2
 		return Vector2(this->x * factor, this->y * factor);
 	}
 
+	// To use in OpenGL
+	float* ToFloatPtr()
+	{
+		return &x;
+	}
+
 };

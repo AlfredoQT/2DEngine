@@ -225,6 +225,54 @@ void EngineGL::Quit(IGame * pGame) const
 
 void EngineGL::DrawLine(const Vector2 & pOrigin, const Vector2 & pTarget, const Color & pColor, const int& pOrderInLayer)
 {
+	// the three matrices we need
+	Matrix4 orthographicProjection;
+	Matrix4 model;
+	Matrix4 view;
+
+	// Dimensions
+	// I had an epiphany
+	Vector2 size = Vector2(FMath::Abs(pTarget.x - pOrigin.x) / 2.0f, FMath::Abs(pTarget.y - pOrigin.y) / 2.0f);
+
+	// projection matrix
+	Matrix4::OrthographicProjectionMatrix(&orthographicProjection, 800.0f, 600.0f, -100.0f, 100.0f);
+
+	// view matrix (really just an identity matrix, maybe optimize this call?)
+	// This is the pivot offset
+	Matrix4::MakeTranslationMatrix(&view, size);
+
+	// positions of the uniforms
+	int view_mat_location;
+	int proj_mat_location;
+	int model_mat_location;
+	int size_vec_location;
+	int in_color_vec_location;
+
+	glUseProgram(mGCBox.mProgram);
+
+	ColorF colorF = pColor.ToColorF();
+
+	in_color_vec_location = glGetUniformLocation(mGCBox.mProgram, "in_color");
+	glUniform4fv(in_color_vec_location, 1, colorF.ToPtr());
+
+	Matrix4::MakeTranslationMatrix(&model, pOrigin); // position of the object
+	model.m43 = static_cast<float>(pOrderInLayer); // this is the "layer", cast from int to float
+
+	view_mat_location = glGetUniformLocation(mGCBox.mProgram, "view");
+	glUniformMatrix4fv(view_mat_location, 1, GL_FALSE, view.ToFloatPtr());
+	proj_mat_location = glGetUniformLocation(mGCBox.mProgram, "proj");
+	glUniformMatrix4fv(proj_mat_location, 1, GL_FALSE, orthographicProjection.ToFloatPtr());
+	model_mat_location = glGetUniformLocation(mGCBox.mProgram, "model");
+	glUniformMatrix4fv(model_mat_location, 1, GL_FALSE, model.ToFloatPtr());
+	size_vec_location = glGetUniformLocation(mGCBox.mProgram, "size");
+	glUniform2fv(size_vec_location, 1, size.ToFloatPtr());
+
+	glBindVertexArray(mGCBox.mVAOPoint);
+	// I just played with this and a line came, I will need to investigate further
+	// I was reading the docs, so I changed GL_TRIANGLE_STRIP to GL_LINE_STRIP and playing with the other params, this came out
+	glDrawArrays(GL_LINE_STRIP, 1, 2);
+	glBindVertexArray(0);
+	glUseProgram(0);
 }
 
 void EngineGL::DrawFillCircle(const Vector2 & pPosition, const float & pRadius, const Color & pColor, const int& pOrderInLayer)

@@ -159,6 +159,9 @@ int EngineGL::Init(IGame * pGame, const char * pTitle, const int & pWidth, const
 	glEnableVertexAttribArray(ATTRIB_TEX); // Enable it here
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0); // Stop binding
+
+	// No error
+	return 0;
 }
 
 void EngineGL::Run(IGame * pGame)

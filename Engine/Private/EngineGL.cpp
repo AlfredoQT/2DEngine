@@ -326,7 +326,9 @@ void EngineGL::DrawFillCircle(const Vector2 & pPosition, const float & pRadius, 
 }
 
 void EngineGL::DrawCircle(const Vector2 & pPosition, const float & pRadius, const Color & pColor, const int& pOrderInLayer)
-{	
+{
+	// For now
+	DrawFillCircle(pPosition, pRadius, pColor, pOrderInLayer);
 }
 
 void EngineGL::DrawRect(const Vector2 & pTopLeft, const Vector2 & pBotRight, const Color & pColor, const int& pOrderInLayer)

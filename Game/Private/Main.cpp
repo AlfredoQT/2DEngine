@@ -2,13 +2,13 @@
 #include "Engine\Public\EngineGL.h"
 #include "Engine\Public\Core\Types\Color.h"
 #include "Engine\Public\Core\Types\Vector2.h"
-#include "Game\Public\TestGame.h"
+#include "Game\Public\TurretGame.h"
 
 int main(int argc, char* args[])
 {
 	Engine* engine = new EngineGL();
 
-	TestGame game;
+	TurretGame game;
 
 	if (engine->Init(&game, "AlfiEngine", 800, 600) != 0)
 	{

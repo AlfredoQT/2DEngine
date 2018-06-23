@@ -83,6 +83,9 @@ int EngineGL::Init(IGame * pGame, const char * pTitle, const int & pWidth, const
 	// do depth comparisons and update the depth buffer
 	glEnable(GL_DEPTH_TEST);
 
+	// Enable blending for alpha
+	glEnable(GL_BLEND); glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	const GLchar *vert_shader =
 		"#version 330\n"
 		"//This two will be mapped in the setup\n"
@@ -98,7 +101,7 @@ int EngineGL::Init(IGame * pGame, const char * pTitle, const int & pWidth, const
 	const GLchar *frag_shader =
 		"#version 330\n"
 		"layout(location = 0) out vec4 color;\n"
-		"uniform vec3 in_color;\n"
+		"uniform vec4 in_color;\n"
 		"in vec2 CircleTexCoords;//Will be set by the vertex shader\n"
 		"void main() {\n"
 		"    float d = distance(CircleTexCoords, vec2(0.0, 0.0));// So it has to do with the unit circle, so corners of a box will not be drawn\n"
@@ -106,7 +109,7 @@ int EngineGL::Init(IGame * pGame, const char * pTitle, const int & pWidth, const
 		"    {\n"
 		"        discard; // Ignore this pixel\n"
 		"    }\n"
-		"    color = vec4(in_color, 0);\n"
+		"    color = vec4(in_color);\n"
 		"}\n";
 
 	// compile and link OpenGL program
@@ -160,6 +163,9 @@ int EngineGL::Init(IGame * pGame, const char * pTitle, const int & pWidth, const
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0); // Stop binding
 
+	// Start the game
+	pGame->Init(this);
+
 	// No error
 	return 0;
 }
@@ -196,8 +202,8 @@ void EngineGL::Run(IGame * pGame)
 		// Determines the delta time, for now 
 		Time::Update();
 
-		DrawRect(Vector2(400.0f, 300.0f), Vector2(790.0f, 590.0f), Color(100, 255, 255));
-		DrawFillCircle(Vector2(400, 300.0f), 600.0f, Color(80, 200, 60));
+		// Run the game
+		pGame->Run();
 
 		// Double buffer
 		SDL_GL_SwapWindow(mWindow);
@@ -206,6 +212,9 @@ void EngineGL::Run(IGame * pGame)
 
 void EngineGL::Quit(IGame * pGame) const
 {
+	// Quit the game
+	pGame->End();
+
 	// Cleanup
 	SDL_GL_DeleteContext(mGLContext);
 	SDL_DestroyWindow(mWindow);
@@ -214,11 +223,11 @@ void EngineGL::Quit(IGame * pGame) const
 	SDL_Quit();
 }
 
-void EngineGL::DrawLine(const Vector2 & pOrigin, const Vector2 & pTarget, const Color & pColor)
+void EngineGL::DrawLine(const Vector2 & pOrigin, const Vector2 & pTarget, const Color & pColor, const int& pOrderInLayer)
 {
 }
 
-void EngineGL::DrawFillCircle(const Vector2 & pPosition, const float & pRadius, const Color & pColor)
+void EngineGL::DrawFillCircle(const Vector2 & pPosition, const float & pRadius, const Color & pColor, const int& pOrderInLayer)
 {
 	// the three matrices we need
 	Matrix4 orthographicProjection;
@@ -247,13 +256,11 @@ void EngineGL::DrawFillCircle(const Vector2 & pPosition, const float & pRadius, 
 
 	ColorF colorF = pColor.ToColorF();
 
-	float color[3] = { colorF.R, colorF.G, colorF.B };
-
 	in_color_vec_location = glGetUniformLocation(mGCCircle.mProgram, "in_color");
-	glUniform3fv(in_color_vec_location, 1, &color[0]);
+	glUniform4fv(in_color_vec_location, 1, colorF.ToPtr());
 
 	Matrix4::MakeTranslationMatrix(&model, pPosition); // position of the object
-	model.m43 = -1.0f; // this is the "layer", cast from int to float
+	model.m43 = static_cast<float>(pOrderInLayer); // this is the "layer", cast from int to float
 
 	view_mat_location = glGetUniformLocation(mGCCircle.mProgram, "view");
 	glUniformMatrix4fv(view_mat_location, 1, GL_FALSE, view.ToFloatPtr());
@@ -270,11 +277,11 @@ void EngineGL::DrawFillCircle(const Vector2 & pPosition, const float & pRadius, 
 	glUseProgram(0);
 }
 
-void EngineGL::DrawCircle(const Vector2 & pPosition, const float & pRadius, const Color & pColor)
+void EngineGL::DrawCircle(const Vector2 & pPosition, const float & pRadius, const Color & pColor, const int& pOrderInLayer)
 {	
 }
 
-void EngineGL::DrawRect(const Vector2 & pTopLeft, const Vector2 & pBotRight, const Color & pColor)
+void EngineGL::DrawRect(const Vector2 & pTopLeft, const Vector2 & pBotRight, const Color & pColor, const int& pOrderInLayer)
 {
 	// the three matrices we need
 	Matrix4 orthographicProjection;
@@ -303,13 +310,11 @@ void EngineGL::DrawRect(const Vector2 & pTopLeft, const Vector2 & pBotRight, con
 
 	ColorF colorF = pColor.ToColorF();
 
-	float color[3] = { colorF.R, colorF.G, colorF.B };
-
 	in_color_vec_location = glGetUniformLocation(mGCBox.mProgram, "in_color");
-	glUniform3fv(in_color_vec_location, 1, &color[0]);
+	glUniform4fv(in_color_vec_location, 1, colorF.ToPtr());
 
 	Matrix4::MakeTranslationMatrix(&model, pTopLeft); // position of the object
-	model.m43 = -1.0f; // this is the "layer", cast from int to float
+	model.m43 = static_cast<float>(pOrderInLayer); // this is the "layer", cast from int to float
 
 	view_mat_location = glGetUniformLocation(mGCBox.mProgram, "view");
 	glUniformMatrix4fv(view_mat_location, 1, GL_FALSE, view.ToFloatPtr());
@@ -326,6 +331,6 @@ void EngineGL::DrawRect(const Vector2 & pTopLeft, const Vector2 & pBotRight, con
 	glUseProgram(0);
 }
 
-void EngineGL::DrawText(std::string pFontFile, const int & pFontSize, const std::string pMessage, const Vector2 & pPosition, const Color & pColor)
+void EngineGL::DrawText(std::string pFontFile, const int & pFontSize, const std::string pMessage, const Vector2 & pPosition, const Color & pColor, const int& pOrderInLayer)
 {
 }

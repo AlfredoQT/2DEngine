@@ -13,7 +13,7 @@ void COGLineShape::Render()
 	// Draw every line
 	for (std::size_t i = 0; i < mPoints.size() - 1; ++i)
 	{
-		mGO->GetWorld()->GetEngine()->DrawLine(mPoints[i], mPoints[i + 1], mColor);
+		mGO->GetWorld()->GetEngine()->DrawLine(mPoints[i], mPoints[i + 1], mColor, 0);
 	}
 }
 

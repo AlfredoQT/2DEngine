@@ -166,6 +166,7 @@
     <ClCompile Include="Game\Private\InputManager.cpp" />
     <ClCompile Include="Game\Private\Main.cpp" />
     <ClCompile Include="Game\Private\Random.cpp" />
+    <ClCompile Include="Game\Private\TestGame.cpp" />
     <ClCompile Include="Game\Private\TurretGame.cpp" />
     <ClCompile Include="Game\Private\Weapons\IWeapon.cpp" />
     <ClCompile Include="Game\Private\Weapons\MachineGun.cpp" />
@@ -216,6 +217,7 @@
     <ClInclude Include="Game\Public\IPhysicsCollisionEvent.h" />
     <ClInclude Include="Game\Public\Random.h" />
     <ClInclude Include="Game\Public\Singleton.h" />
+    <ClInclude Include="Game\Public\TestGame.h" />
     <ClInclude Include="Game\Public\TurretGame.h" />
     <ClInclude Include="Game\Public\Weapons\IWeapon.h" />
     <ClInclude Include="Game\Public\Weapons\MachineGun.h" />

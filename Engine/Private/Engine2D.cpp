@@ -106,13 +106,13 @@ void Engine2D::Quit(IGame* pGame) const
 }
 
 // TODO: Move this somewhere else
-void Engine2D::DrawLine(const Vector2 & pOrigin, const Vector2 & pTarget, const Color & pColor)
+void Engine2D::DrawLine(const Vector2 & pOrigin, const Vector2 & pTarget, const Color & pColor, const int& pOrderInLayer)
 {
 	SDL_SetRenderDrawColor(mRenderer, pColor.R, pColor.G, pColor.B, pColor.A);
 	SDL_RenderDrawLine(mRenderer, static_cast<int>(pOrigin.x), static_cast<int>(pOrigin.y), static_cast<int>(pTarget.x), static_cast<int>(pTarget.y));
 }
 
-void Engine2D::DrawFillCircle(const Vector2 & pPosition, const float & pRadius, const Color & pColor)
+void Engine2D::DrawFillCircle(const Vector2 & pPosition, const float & pRadius, const Color & pColor, const int& pOrderInLayer)
 {
 	SDL_SetRenderDrawColor(mRenderer, pColor.R, pColor.G, pColor.B, pColor.A);
 
@@ -123,7 +123,7 @@ void Engine2D::DrawFillCircle(const Vector2 & pPosition, const float & pRadius, 
 
 }
 
-void Engine2D::DrawCircle(const Vector2 & pPosition, const float & pRadius, const Color & pColor)
+void Engine2D::DrawCircle(const Vector2 & pPosition, const float & pRadius, const Color & pColor, const int& pOrderInLayer)
 {
 	SDL_SetRenderDrawColor(mRenderer, pColor.R, pColor.G, pColor.B, pColor.A);
 
@@ -134,7 +134,7 @@ void Engine2D::DrawCircle(const Vector2 & pPosition, const float & pRadius, cons
 
 }
 
-void Engine2D::DrawRect(const Vector2 & pTopLeft, const Vector2 & pBotRight, const Color & pColor)
+void Engine2D::DrawRect(const Vector2 & pTopLeft, const Vector2 & pBotRight, const Color & pColor, const int& pOrderInLayer)
 {
 	SDL_SetRenderDrawColor(mRenderer, pColor.R, pColor.G, pColor.B, pColor.A);
 	SDL_Rect rect;
@@ -146,7 +146,7 @@ void Engine2D::DrawRect(const Vector2 & pTopLeft, const Vector2 & pBotRight, con
 	SDL_RenderDrawRect(mRenderer, &rect);
 }
 
-void Engine2D::DrawText(std::string pFontFile, const int& pFontSize, const std::string pMessage, const Vector2 & pPosition, const Color & pColor)
+void Engine2D::DrawText(std::string pFontFile, const int& pFontSize, const std::string pMessage, const Vector2 & pPosition, const Color & pColor, const int& pOrderInLayer)
 {
 	// Go look for the font, I know it's slow, but SDL_ttf did not let me set the fontsize
 	TTF_Font* font = TTF_OpenFont(pFontFile.c_str(), pFontSize);

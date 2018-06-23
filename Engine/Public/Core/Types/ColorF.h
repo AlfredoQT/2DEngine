@@ -39,4 +39,9 @@ struct ColorF
 	{
 	}
 
+	GLclampf* ToPtr()
+	{
+		return &R;
+	}
+
 };

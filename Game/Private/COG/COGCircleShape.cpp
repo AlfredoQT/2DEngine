@@ -12,7 +12,7 @@ COGCircleShape::COGCircleShape(GameObject * pGO)
 void COGCircleShape::Render()
 {
 	// Draw a circle
-	mGO->GetWorld()->GetEngine()->DrawCircle(mTransform->GetPosition(), mRadius, mColor);
+	mGO->GetWorld()->GetEngine()->DrawCircle(mTransform->GetPosition(), mRadius, mColor, 0);
 }
 
 float COGCircleShape::GetRadius()

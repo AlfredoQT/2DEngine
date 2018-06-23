@@ -177,6 +177,9 @@
     <ClCompile Include="Engine\Private\Core\GraphicsContext.cpp">
       <Filter>Source Files\Engine\Private\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Private\TestGame.cpp">
+      <Filter>Source Files\Game\Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Public\Engine.h">
@@ -322,6 +325,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Public\Core\FMath.h">
       <Filter>Source Files\Engine\Public\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Public\TestGame.h">
+      <Filter>Source Files\Game\Public</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -25,14 +25,14 @@ public:
 	virtual void Quit(IGame* pGame) const override;
 
 	// TODO: Provide functionality for order in layer
-	virtual void DrawLine(const Vector2& pOrigin, const Vector2& pTarget, const Color& pColor) override;
-	virtual void DrawFillCircle(const Vector2& pPosition, const float& pRadius, const Color& pColor) override;
-	virtual void DrawCircle(const Vector2& pPosition, const float& pRadius, const Color& pColor) override;
-	virtual void DrawRect(const Vector2& pTopLeft, const Vector2& pBotRight, const Color& pColor) override;
+	virtual void DrawLine(const Vector2& pOrigin, const Vector2& pTarget, const Color& pColor, const int& pOrderInLayer) override;
+	virtual void DrawFillCircle(const Vector2& pPosition, const float& pRadius, const Color& pColor, const int& pOrderInLayer) override;
+	virtual void DrawCircle(const Vector2& pPosition, const float& pRadius, const Color& pColor, const int& pOrderInLayer) override;
+	virtual void DrawRect(const Vector2& pTopLeft, const Vector2& pBotRight, const Color& pColor, const int& pOrderInLayer) override;
 
 	// This will open and close the font everytime, so it may be a little slow, but I can set different sizes every time
 	// Drawn on top left
-	virtual void DrawText(std::string pFontFile, const int& pFontSize, const std::string pMessage, const Vector2& pPosition, const Color& pColor) override;
+	virtual void DrawText(std::string pFontFile, const int& pFontSize, const std::string pMessage, const Vector2& pPosition, const Color& pColor, const int& pOrderInLayer) override;
 
 private:
 

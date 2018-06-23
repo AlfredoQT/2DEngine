@@ -40,7 +40,7 @@ struct Color
 
 	ColorF ToColorF() const
 	{
-		return ColorF(R / 255.0f, G / 255.0f, B / 255 / 0.0f, A / 255.0f);
+		return ColorF(R / 255.0f, G / 255.0f, B / 255.0f, A / 255.0f);
 	}
 
 };
